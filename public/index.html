@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat App</title>
+    <style>
+      body {
+        background-color: #f0f2f5;
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      #message {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        font-size: 16px;
+      }
+
+      #sendBtn {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        margin-left: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      #sendBtn:hover {
+        background-color: #45a049;
+      }
+
+      #messages {
+        margin-top: 30px;
+        width: 400px;
+        max-height: 400px;
+        overflow-y: auto;
+        padding: 15px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+
+      #messages p {
+        background-color: #e7f3fe;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        word-wrap: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Chatting</h1>
+
+    <div>
+      <input type="text" id="message" placeholder="Enter Message" />
+      <button id="sendBtn">Send</button>
+    </div>
+
+    <div id="messages"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const sendBtn = document.getElementById("sendBtn");
+      const messageInput = document.getElementById("message");
+      const allMessages = document.getElementById("messages");
+
+      socket.on("message", (message) => {
+        const p = document.createElement("p");
+        p.innerText = message;
+        allMessages.appendChild(p);
+        allMessages.scrollTop = allMessages.scrollHeight; // Auto-scroll to the latest message
+      });
+
+      sendBtn.addEventListener("click", () => {
+        const message = messageInput.value.trim();
+        if (message !== "") {
+          console.log(message);
+          socket.emit("user-message", message);
+          messageInput.value = ""; // Clear input after sending
+        }
+      });
+    </script>
+  </body>
+</html>
