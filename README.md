@@ -45,8 +45,8 @@ Fast Chat is a professional, enterprise-grade real-time messaging platform built
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/fast-chat.git
-   cd fast-chat
+   git clone https://github.com/nasir7838/Chatting-application..git
+   cd Chatting-application
    ```
 
 2. **Install dependencies**
@@ -139,9 +139,8 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+**Nasir Alam**
+- GitHub: [@nasir7838](https://github.com/nasir7838)
 
 ---
 
